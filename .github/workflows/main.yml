@@ -7,6 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+      - name: Hello world action step
+        id: hello
+        uses: actions/hello-world-javascript-action@v1.1
+        with:
+          who-to-greet: 'mussett'
+      # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The Greeting time was ${{ steps.hello.outputs.time }}"

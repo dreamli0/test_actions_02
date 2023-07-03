@@ -15,7 +15,7 @@ jobs:
           
       - name: Hello world step
         id: hello_
-        uses: actions/hello-world-javascript-action@v1.1.1
+        uses: actions/hello-world-action@v1.1.1
         with:
           who-to-greet: 'musset'
       # Use the output from the `hello` step

@@ -8,9 +8,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
     
-      - name: custom action step
-        id: custom
-        uses: actions/custome-action@v1.1.1
+      - name: my action step
+        id: my
+        uses: actions/my-action@v1.1.1
         with:
           who-to-greet: 'musset'
       # Use the output from the `hello` step

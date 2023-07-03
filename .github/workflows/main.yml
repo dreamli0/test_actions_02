@@ -10,7 +10,7 @@ jobs:
     
       - name: my action step
         id: my
-        uses: dreamli0/my-action@v1.1.2
+        uses: dreamli0/my-action@v1
         with:
           who-to-greet: 'musset'
       # Use the output from the `hello` step

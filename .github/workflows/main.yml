@@ -12,7 +12,7 @@ jobs:
         id: my
         uses: dreamli0/my-action@v1.1.2
         with:
-          who-to-greet: 'musset'
+          who-to-greet: 'mussetttt'
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The Greeting time was ${{ steps.hello.outputs.time }}"

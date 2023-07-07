@@ -6,7 +6,7 @@ jobs:
     name: A job to say hello
     steps:
       - name: dreamli action step
-        uses: dreamli0/my-action@1.1.2
+        uses: dreamli0/my-action@v1.1.2
         with:
           who-to-greet: ${{ secrets.AWS_SECRETS }}
         

@@ -18,7 +18,7 @@ jobs:
         with:
           who-to-greet: 'musset'
       - id: step3
-        run: echo $GITHUB_OUTPUT
+        run: ${{ steps.step2.outputs.test }}
       
       
   job2:

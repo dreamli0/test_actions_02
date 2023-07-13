@@ -17,6 +17,8 @@ jobs:
           who-to-greet: 'mussett'
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
+      - id: step3
+        run: echo "$GITHUB_OUTPUT"
       
       
   job2:

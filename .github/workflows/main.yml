@@ -10,13 +10,14 @@ jobs:
     steps:
       - id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
-      - id: step2
-        run: echo "test=world" >> "$GITHUB_OUTPUT"
       - name: my action step
         id: my
         uses: musset0/my-action@v1.1.2
         with:
           who-to-greet: 'mussett'
+      - id: step2
+        run: echo "test=world" >> "$GITHUB_OUTPUT"
+      
       
   job2:
     runs-on: ubuntu-latest

@@ -2,7 +2,7 @@ on: [push]
 
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # Map a step output to a job output
     outputs:
       output1: ${{ steps.step1.outputs.test }}
@@ -12,8 +12,14 @@ jobs:
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
+      - name: my action step
+        id: my
+        uses: musset0/my-action@v1.1.2
+        with:
+          who-to-greet: 'mussettt'
+      
   job2:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: job1
     steps:
       - env:

@@ -16,7 +16,7 @@ jobs:
         id: my
         uses: musset0/my-action@v1.1.2
         with:
-          who-to-greet: 'mussettt'
+          who-to-greet: 'musset'
       - id: step3
         run: echo $GITHUB_OUTPUT
       

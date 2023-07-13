@@ -18,7 +18,7 @@ jobs:
         with:
           who-to-greet: 'musset'
       - id: step3
-        run: ${{ steps.step2.outputs.test }}
+        run: echo ${{ steps.step2.outputs.test }}
       
       
   job2:

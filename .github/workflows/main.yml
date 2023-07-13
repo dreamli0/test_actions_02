@@ -9,16 +9,16 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - id: step1
-        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        run: echo $GITHUB_OUTPUT | echo "test=hello" >> "$GITHUB_OUTPUT"
       - name: my action step
         id: my
         uses: musset0/my-action@v1.1.2
         with:
           who-to-greet: 'mussett'
       - id: step2
-        run: echo "test=world" >> "$GITHUB_OUTPUT"
+        run: echo $GITHUB_OUTPUT | echo "test=world" >> "$GITHUB_OUTPUT"
       - id: step3
-        run: echo ${{ steps.step2.outputs }}
+        run: echo $GITHUB_OUTPUT
       
       
   job2:

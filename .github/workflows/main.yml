@@ -16,7 +16,7 @@ jobs:
         id: my
         uses: musset0/my-action@v1.1.2
         with:
-          who-to-greet: 'musset'
+          who-to-greet: 'mussett'
       - id: step3
         run: echo ${{ steps.step2.outputs.test }}
       - name: my action step

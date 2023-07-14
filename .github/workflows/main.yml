@@ -18,7 +18,7 @@ jobs:
         with:
           who-to-greet: 'mussett'
       - id: step3
-        run: echo "${{ steps.step1.outputs.test }}" >> "$GITHUB_OUTPUT"
+        run: echo "test=${{ steps.step1.outputs.test }}" >> "$GITHUB_OUTPUT"
       - name: my action step
         id: my2
         uses: musset0/my-action@v1.1.2

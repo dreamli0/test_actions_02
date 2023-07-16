@@ -4,6 +4,8 @@ jobs:
   hello_world_job:
     runs-on: self-hosted
     name: A job to say hello
+    outputs:
+      output1: ${{ steps.hello.outputs.time }}
     steps:
       
       - name: dreamli action step
@@ -12,14 +14,21 @@ jobs:
         with:
           hi-there: ${{ secrets.AWS_SECRETS }}
           
-#       - name: my action step
-#         id: my
-#         uses: musset0/my-action@v1.1.2
-#         with:
-#           who-to-greet: 'mussettttt'
+      - name: my action step
+        id: my
+        uses: musset0/my-action@v1.1.2
+        with:
+          who-to-greet: 'mussettttt'
          
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The Greeting time was ${{ steps.hello.outputs.time }}"
-        
+  
+  job2:
+    runs-on: self-hosted
+    needs: hello_world_job
+    steps:
+      - env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+        run: echo "$OUTPUT1"
       

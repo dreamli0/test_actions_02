@@ -7,18 +7,19 @@ jobs:
     steps:
       
       - name: dreamli action step
+        id: hi
         uses: dreamli0/my-action@main
         with:
           hi-there: ${{ secrets.AWS_SECRETS }}
           
-      - name: my action step
-        id: my
-        uses: musset0/my-action@v1.1.2
-        with:
-          who-to-greet: 'mussettttt'
+#       - name: my action step
+#         id: my
+#         uses: musset0/my-action@v1.1.2
+#         with:
+#           who-to-greet: 'mussettttt'
          
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The Greeting time was ${{ steps.my.outputs.time }}"
+        run: echo "The Greeting time was ${{ steps.hi.outputs.time }}"
         
       

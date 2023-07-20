@@ -10,7 +10,7 @@ on:
         required: true
         type: string
     outputs:
-      output1: ${{jobs.reusable_workflow_job.outputs.output1}}
+      output1: ${{ jobs.reusable_workflow_job.outputs.output1 }}
 
 jobs:
   reusable_workflow_job:

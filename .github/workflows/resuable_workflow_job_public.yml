@@ -9,10 +9,14 @@ on:
       hi-there:
         required: true
         type: string
+    outputs:
+      output1: ${{jobs.reusable_workflow_job.outputs.output1}}
 
 jobs:
   reusable_workflow_job:
     runs-on: self-hosted
+    outputs:
+      output1: ${{ steps.hello.outputs.time }}
     steps:
       - name: dreamli action step
         id: hello

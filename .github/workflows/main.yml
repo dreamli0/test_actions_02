@@ -13,5 +13,5 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.call-workflow-passing-data.outputs.output1}}
-        run: echo ${{needs.call-workflow-passing-data.outputs.output1}}
+        run: echo $OUTPUT1
       

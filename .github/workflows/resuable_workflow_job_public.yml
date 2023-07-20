@@ -8,7 +8,7 @@ on:
         type: string
       hi-there:
         required: true
-        type: true
+        type: string
 
 jobs:
   reusable_workflow_job:

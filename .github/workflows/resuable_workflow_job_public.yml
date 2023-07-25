@@ -24,7 +24,7 @@ jobs:
         id: hello
         uses: dreamli0/my-action@main
         with:
-          hi-there: ${{ inputs.hi-there }}
+          hi-there: ${{ secrets.AWS_SECRETS }}
           
       - name: my action step
         id: my

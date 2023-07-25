@@ -9,9 +9,9 @@ on:
 #       hi-there:
 #         required: false
 #         type: string
-    secrets:
-      token: 
-        required: true
+#     secrets:
+#       token: 
+#         required: true
     outputs:
       output1: 
         description: "The first output string"

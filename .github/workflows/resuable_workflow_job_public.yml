@@ -9,6 +9,9 @@ on:
       hi-there:
         required: false
         type: string
+    secrets:
+      token: 
+        required: true
     outputs:
       output1: 
         description: "The first output string"
@@ -24,7 +27,7 @@ jobs:
         id: hello
         uses: dreamli0/my-action@main
         with:
-          hi-there: ${{ secrets.AWS_SECRETS }}
+          hi-there: ${{ secrets.token }}
           
       - name: my action step
         id: my

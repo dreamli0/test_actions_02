@@ -6,9 +6,9 @@ on:
       who-to-greet:
         required: true
         type: string
-      hi-there:
-        required: false
-        type: string
+#       hi-there:
+#         required: false
+#         type: string
     secrets:
       token: 
         required: true

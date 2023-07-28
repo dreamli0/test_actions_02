@@ -6,12 +6,12 @@ on:
       who-to-greet:
         required: true
         type: string
-#       hi-there:
-#         required: false
-#         type: string
-#     secrets:
-#       token: 
-#         required: true
+      hi-there:
+        required: false
+        type: string
+    secrets:
+      AWS: 
+        required: false
     outputs:
       output1: 
         description: "The first output string"

@@ -33,7 +33,7 @@ jobs:
         id: my
         uses: musset0/my-action@v1.1.2
         with:
-          who-to-greet: ${{ secrets.ENV_AWS }}
+          who-to-greet: ${{ inputs.who-to-greet }}
          
       # Use the output from the `hello` step
       - name: Get the output time

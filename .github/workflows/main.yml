@@ -8,21 +8,21 @@ jobs:
 
     steps:
 
-    # - name: Use or generate the cache
-    #   if: steps.cache-action.outputs.cache-hit != 'true'
-    #   run: mkdir cache-folder && echo 2 > cache-folder/hello
-    
     - name: Enable Cache
       id: cache-action
       uses: actions/cache@v2
       with:
         path: cache-folder
-        key: ${{ runner.os }}-${{ hashFiles('**/hello.txt') }}
+        key: ${{ runner.os }}-${{ hashFiles('**/hello') }}
+
+    - name: Use or generate the cache
+      if: steps.cache-action.outputs.cache-hit != 'true'
+      run: mkdir cache-folder && echo 2 > cache-folder/hello
 
     - name: Verify we have our cached file
       run: |
         echo `pwd`
-        cat cache-folder/hello.txt
+        cat cache-folder/hello
 
   use:
     needs: build
@@ -33,12 +33,12 @@ jobs:
       uses: actions/cache@v2
       with:
         path: cache-folder
-        key: ${{ runner.os }}-${{ hashFiles('**/hello.txt') }}
+        key: ${{ runner.os }}-${{ hashFiles('**/hello') }}
         
     - shell: bash
       if: steps.cache-action.outputs.cache-hit == 'true'
       run: |
-          value=`cat cache-folder/hello.txt`
+          value=`cat cache-folder/hello`
           echo $value \* 8 
     
 

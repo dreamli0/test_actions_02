@@ -23,8 +23,8 @@ jobs:
       run: cat cache-folder/hello.txt
 
   use:
+    needs: build
     runs-on: self-hosted
-
     steps:
     - name: Enable Cache
       id: cache-action

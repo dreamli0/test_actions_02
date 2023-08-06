@@ -10,17 +10,20 @@ jobs:
       - shell: bash
         run: |
           expr 3 + 7 > math-homework.txt
+
+      - name: my action step
+        id: my
+        uses: musset0/my-action@v1.1.2
+        with:
+          who-to-greet: 'mussettt'
+          
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
         with:
           name: homework
           path: math-homework.txt
           
-      - name: my action step
-        id: my
-        uses: musset0/my-action@v1.1.2
-        with:
-          who-to-greet: 'mussettt'
+      
 
   job_2:
     name: Multiply by 8

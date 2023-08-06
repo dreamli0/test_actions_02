@@ -16,7 +16,7 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }}
 
     - name: Use or generate the cache
-      if: steps.cache-action.outputs.cache-hit != 'true'
+      if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       run: echo 3 > cache-folder/hello
 
     - name: Verify we have our cached file
@@ -36,7 +36,7 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }}
         
     - shell: bash
-      if: steps.cache-action.outputs.cache-hit == 'true'
+      if: ${{ steps.cache-npm.outputs.cache-hit == 'true' }}
       run: |
           value=`cat cache-folder/hello`
           echo $value \* 8 

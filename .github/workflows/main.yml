@@ -39,7 +39,8 @@ jobs:
       if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
       run: |
           value=`cat cache-folder/hello`
-          echo `$value \* 8`
+          result = expr $value \* 8
+          echo $result
     
 
       

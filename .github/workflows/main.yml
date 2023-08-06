@@ -20,7 +20,7 @@ jobs:
         id: my
         uses: musset0/my-action@v1.1.2
         with:
-          who-to-greet: 'musset'
+          who-to-greet: 'mussetttt'
 
   job_2:
     name: Multiply by 8

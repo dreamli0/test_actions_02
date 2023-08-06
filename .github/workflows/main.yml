@@ -8,9 +8,9 @@ jobs:
 
     steps:
 
-    - name: Use or generate the cache
-      if: steps.cache-action.outputs.cache-hit != 'true'
-      run: mkdir cache-folder && echo 2 > cache-folder/hello
+    # - name: Use or generate the cache
+    #   if: steps.cache-action.outputs.cache-hit != 'true'
+    #   run: mkdir cache-folder && echo 2 > cache-folder/hello
     
     - name: Enable Cache
       id: cache-action

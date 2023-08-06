@@ -20,7 +20,9 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles('**/hello.txt') }}
 
     - name: Verify we have our cached file
-      run: cat cache-folder/hello.txt
+      run: |
+        echo `pwd`
+        cat cache-folder/hello.txt
 
   use:
     needs: build

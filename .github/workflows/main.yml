@@ -29,7 +29,7 @@ jobs:
     steps:
     - name: Enable Cache
       id: cache-action
-      uses: actions/cache@v2
+      uses: actions/cache@v2 
       with:
         path: cache-folder
         key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }}

@@ -43,7 +43,7 @@ jobs:
     - shell: bash
       if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
       run: |
-          cat cache-folder/hello
+          cat cache-folder/hello 
           
     - name: Verify we have our cached file
       run: |

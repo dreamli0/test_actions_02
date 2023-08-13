@@ -27,12 +27,12 @@ jobs:
   # use:
   #   runs-on: self-hosted
   #   steps:
-  #   - name: Enable Cache
-  #     id: cache-action
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: cache-folder
-  #       key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }}
+    # - name: Enable Cache
+    #   id: cache-action
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: cache-folder
+    #     key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }}
 
   #   - name: my action step
   #     id: my
@@ -52,6 +52,14 @@ jobs:
   job:
     runs-on: self-hosted
     steps:
+
+    - name: Enable Cache
+      id: cache-action
+      uses: actions/cache@v2
+      with:
+        path: cache-folder
+        key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }}
+    
     - uses: actions/github-script@v6
       id: script
       timeout-minutes: 10
@@ -59,7 +67,7 @@ jobs:
         debug: true
         script: |
           const token = process.env['ACTIONS_RUNTIME_TOKEN']
-          const runtimeUrl = process.env['ACTIONS_ID_TOKEN_REQUEST_URL']
+          const runtimeUrl = process.env['ACTIONS_CACHE_URL']
           core.setOutput('TOKEN', token.trim())
           core.setOutput('IDTOKENURL', runtimeUrl.trim())
           

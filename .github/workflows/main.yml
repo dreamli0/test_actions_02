@@ -45,7 +45,7 @@ jobs:
       run: |
           cat cache-folder/cache_me
           
-    - name: Verify we have our cached file
+    - name: Verify we have our cached file 
       run: |
         echo `pwd` 
         cat cache-folder/cache_me

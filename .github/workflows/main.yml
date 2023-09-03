@@ -11,7 +11,7 @@ jobs:
         id: hello
         uses: musset0/dock_container_action@v1
         with:
-          who-to-greet: 'musset'
+          who-to-greet: 'mussett'
       - name: Get the output time
         run: echo "The time was ${{steps.hello.outputs.time }}"
 

@@ -48,7 +48,9 @@ jobs:
 
     - name: Use or generate the cache
       if: ${{ steps.cache-action.outputs.cache-hit != 'true' }}
-      run: echo 3 > cache-folder/cache_me 
+      run: |
+        mkdir cache-folder
+        echo 3 > cache-folder/cache_me 
 
     - name: my action step
       id: my

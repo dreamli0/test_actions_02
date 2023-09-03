@@ -1,77 +1,65 @@
+name: Share data between jobs
 
-on: push
+on: [push]
 
 jobs:
-
-  # hello_world_job:
-  #   runs-on: ubuntu-latest
-  #   name: A job to say hello
-  #   steps:
-
-  #     - name: my action step
-  #       id: my
-  #       uses: musset0/my-action@v1.1.2
-  #       with: 
-  #         who-to-greet: 'musset_main__' 
-    
-  #     - name: Hello world action step
-  #       id: hello
-  #       uses: musset0/dock_container_action@v1
-  #       with:
-  #         who-to-greet: 'mussett'
-          
-  #     - name: Get the output time
-  #       run: echo "The time was ${{steps.hello.outputs.time }}"
-
-      
-
-  # build:
-  #   runs-on: self-hosted
-
-  #   steps:
-
-  #   - name: Enable Cache
-  #     id: cache-action
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: cache-folder
-  #       key: ${{ runner.os }}-${{ hashFiles('cache-folder/hello') }} 
-
-  #   # - name: Use or generate the cache
-  #   #   if: ${{ steps.cache-action.outputs.cache-hit != 'true' }}
-  #   #   run: echo 3 > cache-folder/hello 
-
-  #   - name: Verify we have our cached file 
-  #     run: |
-  #       echo `pwd` 
-  #       cat cache-folder/hello 
-
-  use:
+  job_1:
+    name: Add 3 and 7
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Enable Cache
-      id: cache-action
-      uses: actions/cache@v2
-      with:
-        path: cache-folder  
-        key: ${{ runner.os }}-${{ hashFiles('cache-folder/cache-me') }}
-
-    - name: my action step
-      id: my
-      uses: musset0/my-action@v1.1.2
-      with: 
-        who-to-greet: 'musset_main__' 
-        
-    - shell: bash
-      if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
-      run: |
-          cat cache-folder/cache-me
+      - shell: bash
+        run: |
+          expr 3 + 7 > math-homework.txt
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: homework
+          path: math-homework.txt
           
-    - name: Verify we have our cached file 
-      run: |
-        echo `pwd` 
-        cat cache-folder/cache-me
-  
+      - name: my action step
+        id: my
+        uses: musset0/my-action@v1.1.2
+        with:
+          who-to-greet: 'mussettt'
 
-      
+  job_2:
+    name: Multiply by 8
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v3
+        with:
+          name: homework
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+        
+      - shell: bash
+        run: |
+          value=`cat math-homework.txt`
+          expr $value \* 8 > math-homework.txt
+      - name: Upload math result for job 2
+        uses: actions/upload-artifact@v3
+        with:
+          name: homework
+          path: math-homework.txt
+
+  job_3:
+    name: Display results
+    needs: job_2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download math result for job 2
+        uses: actions/download-artifact@v3
+        with:
+          name: homework
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+        
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat math-homework.txt`
+          echo The result is $value

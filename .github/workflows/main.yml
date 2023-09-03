@@ -3,17 +3,17 @@ on: push
 
 jobs:
 
-  hello_world_job:
-    runs-on: self-hosted
-    name: A job to say hello
-    steps:
-      - name: Hello world action step
-        id: hello
-        uses: musset0/dock_container_action@v1
-        with:
-          who-to-greet: 'mussett'
-      - name: Get the output time
-        run: echo "The time was ${{steps.hello.outputs.time }}"
+  # hello_world_job:
+  #   runs-on: self-hosted
+  #   name: A job to say hello
+  #   steps:
+  #     - name: Hello world action step
+  #       id: hello
+  #       uses: musset0/dock_container_action@v1
+  #       with:
+  #         who-to-greet: 'mussett'
+  #     - name: Get the output time
+  #       run: echo "The time was ${{steps.hello.outputs.time }}"
 
   # build:
   #   runs-on: self-hosted
@@ -36,31 +36,31 @@ jobs:
   #       echo `pwd` 
   #       cat cache-folder/hello 
 
-  # use:
-  #   runs-on: self-hosted
-  #   steps:
-  #   - name: Enable Cache
-  #     id: cache-action
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: cache-folder  
-  #       key: ${{ runner.os }}-${{ hashFiles('cache-folder/cache_me') }}
+  use:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Enable Cache
+      id: cache-action
+      uses: actions/cache@v2
+      with:
+        path: cache-folder  
+        key: ${{ runner.os }}-${{ hashFiles('cache-folder/cache_me') }}
 
-  #   - name: my action step
-  #     id: my
-  #     uses: musset0/my-action@v1.1.2
-  #     with: 
-  #       who-to-greet: 'musset_main_' 
+    - name: my action step
+      id: my
+      uses: musset0/my-action@v1.1.2
+      with: 
+        who-to-greet: 'musset_main_' 
         
-  #   - shell: bash
-  #     if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
-  #     run: |
-  #         cat cache-folder/cache_me
+    - shell: bash
+      if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
+      run: |
+          cat cache-folder/cache_me
           
-  #   - name: Verify we have our cached file 
-  #     run: |
-  #       echo `pwd` 
-  #       cat cache-folder/cache_me
+    - name: Verify we have our cached file 
+      run: |
+        echo `pwd` 
+        cat cache-folder/cache_me
   
 
       

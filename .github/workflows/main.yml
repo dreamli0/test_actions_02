@@ -3,25 +3,51 @@ name: Share data between jobs
 on: [push]
 
 jobs:
-  job_1:
-    name: Add 3 and 7
+  use:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-      - shell: bash
-        run: |
-          expr 3 + 7 > artifact/math-homework.txt
-      - name: Upload math result for job 1
-        uses: actions/upload-artifact@v3
-        with:
-          name: homework
-          path: artifact/math-homework.txt
+    - uses: actions/checkout@v3
+    - name: Enable Cache
+      id: cache-action
+      uses: actions/cache@v2
+      with:
+        path: cache-folder  
+        key: ${{ runner.os }}-${{ hashFiles('cache-folder/cache-me') }}
+
+    - name: my action step
+      id: my
+      uses: musset0/my-action@v1.1.2
+      with: 
+        who-to-greet: 'musset_main__' 
+        
+    - shell: bash
+      if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
+      run: |
+          cat cache-folder/cache-me
           
-      - name: my action step
-        id: my
-        uses: musset0/my-action@v1.1.2
-        with:
-          who-to-greet: 'mussettt'
+    - name: Verify we have our cached file 
+      run: |
+        echo `pwd` 
+        cat cache-folder/cache-me
+  # job_1:
+  #   name: Add 3 and 7
+  #   runs-on: self-hosted
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - shell: bash
+  #       run: |
+  #         expr 3 + 7 > artifact/math-homework.txt
+  #     - name: Upload math result for job 1
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: homework
+  #         path: artifact/math-homework.txt
+          
+  #     - name: my action step
+  #       id: my
+  #       uses: musset0/my-action@v1.1.2
+  #       with:
+  #         who-to-greet: 'mussettt'
 
   # job_2:
   #   name: Multiply by 8

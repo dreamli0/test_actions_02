@@ -47,7 +47,7 @@ jobs:
   #       cat cache-folder/hello 
 
   use:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Enable Cache

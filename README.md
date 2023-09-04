@@ -26,7 +26,3 @@ kugai
 
 oh no
 
-oh oh
-12345
-456
-fgy

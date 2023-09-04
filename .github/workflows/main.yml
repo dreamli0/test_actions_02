@@ -5,6 +5,7 @@ jobs:
   use:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Enable Cache
       id: cache-action
       uses: actions/cache@v2

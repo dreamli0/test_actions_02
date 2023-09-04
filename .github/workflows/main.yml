@@ -2,23 +2,36 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  use:
     runs-on: ubuntu-latest
-    name: A job to say hello
     steps:
-      - name: dreamli action step
-        uses: dreamli0/my-action@main
-        with:
-          hi-there: ${{ secrets.AWS_SECRETS }}
+    - name: Enable Cache
+      id: cache-action
+      uses: actions/cache@v2
+      with:
+        path: cache-folder  
+        key: ${{ runner.os }}-${{ hashFiles('cache-folder/cache_me') }}
+
+    # - name: Use or generate the cache
+    #   if: ${{ steps.cache-action.outputs.cache-hit != 'true' }}
+    #   run: |
+    #     mkdir cache-folder
+    #     echo 3 > cache-folder/cache_me 
+
+    - name: my action step
+      id: my
+      uses: musset0/my-action@v1.1.2
+      with: 
+        who-to-greet: 'musset_main__' 
         
-      - name: my action step
-        id: my
-        uses: musset0/my-action@v1.1.2
-        with:
-          who-to-greet: 'musset'
+    - shell: bash
+      if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
+      run: |
+          cat cache-folder/cache_me
           
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The Greeting time was ${{ steps.hello.outputs.time }}"
+    - name: Verify we have our cached file 
+      run: |
+        echo `pwd` 
+        cat cache-folder/cache_me
 
   

@@ -1,27 +1,24 @@
-name: Share data between jobs
 
 on: [push]
 
 jobs:
-  
-  job_1:
-    name: Add 3 and 7
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-      - uses: actions/checkout@v3
-      - shell: bash
-        run: |
-          expr 3 + 7 > artifact/math-homework.txt
-      - name: Upload math result for job 1
-        uses: actions/upload-artifact@v3
+      - name: dreamli action step
+        uses: dreamli0/my-action@main
         with:
-          name: homework
-          path: artifact/math-homework.txt
-          
+          who-to-greet: ${{ secrets.AWS_SECRETS }}
+        
       - name: my action step
         id: my
         uses: musset0/my-action@v1.1.2
         with:
           who-to-greet: 'musset'
+          
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The Greeting time was ${{ steps.hello.outputs.time }}"
 
   

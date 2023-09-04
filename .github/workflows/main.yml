@@ -9,7 +9,7 @@ jobs:
       - name: dreamli action step
         uses: dreamli0/my-action@main
         with:
-          who-to-greet: ${{ secrets.AWS_SECRETS }}
+          hi-there: ${{ secrets.AWS_SECRETS }}
         
       - name: my action step
         id: my

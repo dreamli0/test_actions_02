@@ -36,7 +36,7 @@ jobs:
         id: my
         uses: musset0/my-action@v1.1.2
         with:
-          who-to-greet: ${{ secrets.AZURE}}
+          who-to-greet: 'musset'
          
       # Use the output from the `hello` step
       - name: Get the output time

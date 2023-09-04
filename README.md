@@ -11,13 +11,6 @@ artifact2
 test
 test
 
-dddd
-rrrr
-ffff
-rrrr
-oooo
-yyyy
-
 test again
 
 ttttt

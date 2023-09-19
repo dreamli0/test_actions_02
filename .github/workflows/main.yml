@@ -19,10 +19,10 @@ jobs:
       with: 
         who-to-greet: 'musset_main__' 
         
-    - shell: bash
-      if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
-      run: |
-          cat cache-folder/cache-me
+    # - shell: bash
+    #   if: ${{ steps.cache-action.outputs.cache-hit == 'true' }}
+    #   run: |
+    #       cat cache-folder/cache-me
           
     - name: Verify we have our cached file 
       run: |

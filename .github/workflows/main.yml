@@ -10,7 +10,7 @@ jobs:
         id: hello
         uses: musset0/my-action@v1.1.2
         with:
-          who-to-greet: 'mussett'
+          who-to-greet: 'musset'
           
       - name: dreamli docker action
         id: my

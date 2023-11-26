@@ -16,7 +16,7 @@ jobs:
     
       - name: Hello world action step
         id: hello
-        uses: musset0/my-action@main
+        uses: musset0/my-action
         with:
           who-to-greet: 'musset'
           
